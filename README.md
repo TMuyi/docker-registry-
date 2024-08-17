@@ -87,9 +87,9 @@ The goal is to set up Machine A as a Docker registry that serves as a "pull-thro
 
 ### Making Existing Images Available in the Cache
 
-The images downloaded on Machine A prior to setting up the cache will not automatically be available in the registry cache under the original names. However, once the cache is set up, you can directly pull images using their original names from Machine B. The cache will transparently manage the process, checking if the image is available locally and pulling it from Docker Hub only if necessary.
+The images downloaded on Machine A prior to setting up the cache will not automatically be available in the registry cache under the original names. However, once the cache is set up, you can directly pull images using their original names from Machine B. The cache will check if the image is available locally and pulling it from Docker Hub only if necessary.
 
-For example:
+E.g:
 
 ```bash
 docker pull lscr.io/linuxserver/jellyfin:latest
