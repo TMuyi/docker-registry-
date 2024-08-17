@@ -7,13 +7,15 @@ I’m documenting the steps I took to set up a pull-through cache for Docker ima
 - Two machines: "Machine A", with existing Docker images, and "Machine B", the target machine.
 - Docker installed on both machines.
 
+## Disclaimer
+
+These steps are meant for testing in a local environment. It is insecure and should be treated as such.
+
+
 ## Overview
 
 The goal is to set up Machine A as a Docker registry that serves as a "pull-through cache". Machine B will pull images through Machine A, caching them locally if they are not already cached.
 
-## Disclaimer
-
-These steps are meant for testing in a local environment. It is insecure and should be treated as such.
 
 ### Steps to Set Up Machine A as a Pull-Through Cache
 
@@ -92,12 +94,12 @@ The images downloaded on Machine A prior to setting up the cache will not automa
 For example:
 
 ```bash
-docker pull ubuntu:latest
+docker pull lscr.io/linuxserver/jellyfin:latest
 ```
 
 In this scenario:
 
-- If `ubuntu:latest` is already cached on Machine A, it will be served from there.
+- If `lscr.io/linuxserver/jellyfin:latest` is already cached on Machine A, it will be served from there.
 - If it’s not cached, Machine A will fetch it from Docker Hub, cache it, and then serve it to Machine B.
 
 There’s no need to tag or manually push images if you continue to use the original names.
@@ -107,7 +109,7 @@ There’s no need to tag or manually push images if you continue to use the orig
 If you want to make sure certain images are cached under their original names without re-downloading them on Machine B, you can re-pull the images on Machine A:
 
 ```bash
-docker pull ubuntu:latest
+docker pull lscr.io/linuxserver/jellyfin:latest
 ```
 
 This ensures that Machine A has the image cached under its original name.
@@ -123,7 +125,7 @@ docker push localhost:5000/<image-name>
 
 ### Automating the Tagging and Pushing of Existing Images
 
-If you have several images that need to be tagged and pushed, you can automate this process using a Bash script.
+If you're like me and you have a lot of images that need to be tagged and pushed, you can automate this process using a basic Bash script.
 
 ### Bash Script to Tag and Push Images
 
@@ -162,17 +164,17 @@ echo "All images processed."
 
 ### How to Use the Script
 
-1. Save the script as `push-images.sh`.
+1. Save the script as *.sh.
 2. Make the script executable:
 
    ```bash
-   chmod +x push-images.sh
+   chmod +x <script-name>.sh
    ```
 
-3. Create a text file (e.g., `images.txt`) with the names of the images you want to tag and push:
+3. Create a file (e.g., `images.txt`) with the names of the images you want to tag and push:
 
    ```text
-   ubuntu:latest
+   lscr.io/linuxserver/jellyfin:latest
    nginx:alpine
    myapp:1.0
    ```
