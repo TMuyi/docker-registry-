@@ -121,13 +121,13 @@ docker tag <existing-image> localhost:5000/<image-name>
 docker push localhost:5000/<image-name>
 ```
 
-### Automating the Tagging and Pushing of Existing Images
+### Tagging and Pushing of Existing Images
 
-If you're like me and you have a lot of images that need to be tagged and pushed, you can automate this process using a basic Bash script.
+If you have a lot of existing images that need to be tagged and pushed, you can just do this with a basic script
 
 ### Bash Script to Tag and Push Images
 
-The following script reads image names from a file, tags them for the local registry, and then pushes them:
+The script reads image names from a file, tags them for the local registry, and then pushes them:
 
 ```bash
 #!/bin/bash
@@ -179,14 +179,16 @@ echo "All images processed."
 4. Run the script and pass the file containing the image names:
 
    ```bash
-   ./push-images.sh images.txt
+   ./<script-name>.sh images.txt
    ```
 
 ### To-Do
 
-1. Create a Docker Compose configuration for the registry container.
-2. Add cache expiry duration (preferably set to `0` to keep images indefinitely).
-3. Add security (consider implementing TLS and authentication for a production setup).
+- [x] Add script for tagging existing images
+- [ ] Create a Docker Compose configuration for the registry container
+- [ ] Add a registry ui for managing the registry
+- [ ] Add cache expiry duration (preferably set to `0` to keep images indefinitely). I'll
+- [ ] Add security (consider implementing TLS and authentication for a production setup).
 
 ---
 
