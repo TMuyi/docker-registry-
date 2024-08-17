@@ -11,11 +11,9 @@ I’m documenting the steps I took to set up a pull-through cache for Docker ima
 
 These steps are meant for testing in a local environment. It is insecure and should be treated as such.
 
-
 ## Overview
 
 The goal is to set up Machine A as a Docker registry that serves as a "pull-through cache". Machine B will pull images through Machine A, caching them locally if they are not already cached.
-
 
 ### Steps to Set Up Machine A as a Pull-Through Cache
 
@@ -164,7 +162,7 @@ echo "All images processed."
 
 ### How to Use the Script
 
-1. Save the script as *.sh.
+1. Save the script as \*.sh.
 2. Make the script executable:
 
    ```bash
@@ -175,8 +173,7 @@ echo "All images processed."
 
    ```text
    lscr.io/linuxserver/jellyfin:latest
-   nginx:alpine
-   myapp:1.0
+   ubuntu/squid
    ```
 
 4. Run the script and pass the file containing the image names:
